@@ -42,7 +42,10 @@ public class Anfibio extends Animal {
     public String toString() {
         return "Anfíbio " + super.toString();
     }
-
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
