@@ -1,22 +1,22 @@
 package estudantes.entidades;
 
-/**
- * Representa uma ave com características como cor das penas.
- */
-public class Ave {
-    /**
-     * Valor máximo de paciência para uma ave.
-     */
-    public static final int PACIENCIA_MAXIMA = 30;
-
+public class Ave extends Animal {
     private String corDasPenas;
 
     /**
      * Construtor completo para criar uma instância de Ave.
      *
-     * @param corDasPenas A cor das penas da ave.
+     * @param id           O número de identificação da ave.
+     * @param nome         O nome da ave.
+     * @param especie      A espécie da ave.
+     * @param andarDesejado O andar para o qual a ave deseja ir (0 é o térreo).
+     * @param peso         O peso da ave em quilos.
+     * @param temperaturaIdeal A temperatura ideal da ave em graus Celsius.
+     * @param corDasPenas  A cor das penas da ave.
      */
-    public Ave(String corDasPenas) {
+    public Ave(int id, String nome, String especie, int andarDesejado,
+               int peso, int temperaturaIdeal, String corDasPenas) {
+        super(id, nome, especie, andarDesejado, peso, temperaturaIdeal);
         this.corDasPenas = corDasPenas;
     }
 
@@ -37,14 +37,15 @@ public class Ave {
     public String andar() {
         return "andando";
     }
+
     @Override
     public String toString() {
-        return "Ave [corDasPenas=" + corDasPenas + "]";
+        return "Ave [corDasPenas=" + corDasPenas + "] " + super.toString();
     }
 
     @Override
     public int hashCode() {
-        return corDasPenas.hashCode();
+        return super.hashCode() + corDasPenas.hashCode();
     }
 
     @Override
@@ -56,7 +57,6 @@ public class Ave {
             return false;
         }
         Ave other = (Ave) obj;
-        return corDasPenas.equals(other.corDasPenas);
+        return super.equals(obj) && corDasPenas.equals(other.corDasPenas);
     }
 }
-
