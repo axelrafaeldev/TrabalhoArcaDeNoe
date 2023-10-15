@@ -1,8 +1,5 @@
 package estudantes.entidades;
 
-import java.util.Objects;
-
-
 public class Anfibio extends Animal {
 
     /**
