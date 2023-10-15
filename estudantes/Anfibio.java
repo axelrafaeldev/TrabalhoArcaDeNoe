@@ -4,7 +4,7 @@ public class Anfibio {
 
     // Construtor
     public Anfibio() {
-        // Construtor vazio
+        
     }
 
     // Método para andar

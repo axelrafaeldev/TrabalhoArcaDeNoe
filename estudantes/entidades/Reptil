@@ -1,0 +1,42 @@
+package estudantes.entidades;
+/**
+ * Classe que representa um Réptil.
+ */
+public class Reptil {
+    /**
+     * Constante que define a paciência máxima de um réptil.
+     */
+    public static final int PACIENCIA_MAXIMA = 10;
+
+    /**
+     * Construtor da classe Reptil.
+     */
+    public Reptil() {
+        // Construtor vazio
+    }
+
+    /**
+     * Método que indica que o réptil está andando.
+     *
+     * @return Uma string com a indicação "andando".
+     */
+    public String andar() {
+        return "andando";
+    }
+    @Override
+    public String toString() {
+        return "Réptil";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        return true;
+    }
+}
+

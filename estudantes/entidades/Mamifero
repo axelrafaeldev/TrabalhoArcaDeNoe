@@ -1,0 +1,26 @@
+package estudantes.entidades;
+
+/**
+ * Representa um mamífero com a propriedade de ser peludo ou não.
+ */
+public class Mamifero {
+    private boolean peludo;
+
+    /**
+     * Construtor completo para criar uma instância de Mamifero.
+     *
+     * @param peludo Indica se o mamífero é peludo (true) ou não (false).
+     */
+    public Mamifero(boolean peludo) {
+        this.peludo = peludo;
+    }
+
+    /**
+     * Verifica se o mamífero é peludo.
+     *
+     * @return true se o mamífero é peludo, false caso contrário.
+     */
+    public boolean isPeludo() {
+        return peludo;
+    }
+    }

@@ -1,0 +1,60 @@
+package estudantes.entidades;
+
+/**
+ * Representa um peixe com características como a cor das escamas e ação de nadar.
+ */
+public class Peixe {
+    /**
+     * Valor máximo de paciência para um peixe.
+     */
+    public static final int PACIENCIA_MAXIMA = 60;
+    private String corDasEscamas;
+
+    /**
+     * Construtor completo para criar uma instância de Peixe.
+     *
+     * @param corDasEscamas A cor das escamas do peixe.
+     */
+    public Peixe(String corDasEscamas) {
+        this.corDasEscamas = corDasEscamas;
+    }
+
+    /**
+     * Obtém a cor das escamas do peixe.
+     *
+     * @return A cor das escamas do peixe.
+     */
+    public String getCorDasEscamas() {
+        return corDasEscamas;
+    }
+
+    /**
+     * Retorna uma mensagem indicando que o peixe está nadando.
+     *
+     * @return Mensagem indicando que o peixe está nadando.
+     */
+    public String nadar() {
+        return "nadando";
+    }
+    @Override
+    public String toString() {
+        return "Peixe [corDasEscamas=" + corDasEscamas + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        return corDasEscamas.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Peixe other = (Peixe) obj;
+        return corDasEscamas.equals(other.corDasEscamas);
+    }
+}
