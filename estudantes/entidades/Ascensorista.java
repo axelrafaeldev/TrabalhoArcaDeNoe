@@ -76,7 +76,7 @@ public class Ascensorista {
             double pesoAtual = elevador.calcularPesoAnimais();
             if (pesoAtual > pesoMaximo) {
                 // Remover animais com base no peso
-                List<Animal> animaisNoElevador = elevador.getAnimaisNoElevador();
+                List<Animal> animaisNoElevador = elevador.checarAnimaisNoElevador();
                 double pesoRemovido = 0;
                 int i = 0;
                 while (pesoAtual > pesoMaximo && i < animaisNoElevador.size()) {
@@ -116,9 +116,9 @@ public class Ascensorista {
     }
 
     private void controlarDesembarque(Elevador elevador, Andar andar) {
-        List<Animal> animaisNoElevador = elevador.getAnimaisNoElevador();
+        List<Animal> animaisNoElevador = elevador.checarAnimaisNoElevador();
         for (Animal animal : animaisNoElevador) {
-            if (andar.podeDesembarcar(animal)) {
+            if (andar.desembarcar(animal)) {
                 try {
                     elevador.desembarcar(animal, andar);
                     System.out.println("Um animal desembarcou do elevador.");
