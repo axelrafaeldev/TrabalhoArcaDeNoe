@@ -1,21 +1,22 @@
 package estudantes.entidades;
 
-/**
- * Representa um peixe com características como a cor das escamas e ação de nadar.
- */
-public class Peixe {
-    /**
-     * Valor máximo de paciência para um peixe.
-     */
-    public static final int PACIENCIA_MAXIMA = 60;
+public class Peixe extends Animal {
     private String corDasEscamas;
 
     /**
      * Construtor completo para criar uma instância de Peixe.
      *
+     * @param id           O número de identificação do peixe.
+     * @param nome         O nome do peixe.
+     * @param especie      A espécie do peixe.
+     * @param andarDesejado O andar para o qual o peixe deseja ir (0 é o térreo).
+     * @param peso         O peso do peixe em quilos.
+     * @param temperaturaIdeal A temperatura ideal do peixe em graus Celsius.
      * @param corDasEscamas A cor das escamas do peixe.
      */
-    public Peixe(String corDasEscamas) {
+    public Peixe(int id, String nome, String especie, int andarDesejado,
+                 int peso, int temperaturaIdeal, String corDasEscamas) {
+        super(id, nome, especie, andarDesejado, peso, temperaturaIdeal);
         this.corDasEscamas = corDasEscamas;
     }
 
@@ -36,14 +37,15 @@ public class Peixe {
     public String nadar() {
         return "nadando";
     }
+
     @Override
     public String toString() {
-        return "Peixe [corDasEscamas=" + corDasEscamas + "]";
+        return "Peixe [corDasEscamas=" + corDasEscamas + "] " + super.toString();
     }
 
     @Override
     public int hashCode() {
-        return corDasEscamas.hashCode();
+        return super.hashCode() + corDasEscamas.hashCode();
     }
 
     @Override
@@ -55,6 +57,6 @@ public class Peixe {
             return false;
         }
         Peixe other = (Peixe) obj;
-        return corDasEscamas.equals(other.corDasEscamas);
+        return super.equals(obj) && corDasEscamas.equals(other.corDasEscamas);
     }
 }
