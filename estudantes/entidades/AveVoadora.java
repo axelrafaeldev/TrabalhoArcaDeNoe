@@ -33,11 +33,11 @@ public class AveVoadora extends Ave {
     /**
      * Sobrescreve o método toString para representação em string da classe AveQueVoa.
      *
-     * @return Uma representação em string da ave que voa.
+     * @return Uma representação em string da ave voadora.
      */
     @Override
     public String toString() {
-        return "AveQueVoa [corDasPenas=" + getCorDasPenas() + "] " + super.toString();
+        return "AveVoadora [corDasPenas=" + getCorDasPenas() + "] " + super.toString();
     }
 
     /**
@@ -54,7 +54,7 @@ public class AveVoadora extends Ave {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        AveQueVoa other = (AveQueVoa) obj;
+        AveVoadora other = (AveVoadora) obj;
         return super.equals(obj) && getCorDasPenas().equals(other.getCorDasPenas());
     }
 }
