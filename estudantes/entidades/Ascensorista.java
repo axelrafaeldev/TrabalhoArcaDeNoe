@@ -23,6 +23,14 @@ public class Ascensorista {
     private int tempoEsperaMaximo;
     private int pesoMaximo;
 
+    /**
+     * Construtor da classe Ascensorista.
+     *
+     * @param elevador          Instância do elevador a ser gerenciada.
+     * @param andares           Lista de andares do edifício.
+     * @param tempoEsperaMaximo Tempo máximo que um animal pode esperar na fila.
+     * @param pesoMaximo        Peso máximo que o elevador suporta.
+     */
     public Ascensorista(Elevador elevador, List<Andar> andares, int tempoEsperaMaximo, int pesoMaximo) {
         this.elevador = elevador;
         this.andares = andares;
@@ -30,9 +38,18 @@ public class Ascensorista {
         this.pesoMaximo = pesoMaximo;
     }
 
+    /**
+     * Construtor vazio da classe Ascensorista.
+     */
     public Ascensorista() {
     }
 
+    /**
+     * Método público responsável por coordenar o uso do elevador.
+     *
+     * @param elevador2 Elevador a ser gerenciado.
+     * @param andar     Andar para onde o elevador se move.
+     */
     public void agir(Elevador elevador2, Andar andar) {
         andarAtual = andares.get(elevador.getAndar());
 
@@ -44,12 +61,12 @@ public class Ascensorista {
                 if (elevador.isCheioDeAgua() && !animal.podeSerTransportadoNoAgua()) {
                     elevador.drenar(); // Ação apropriada para tratar o animal que precisa de água
                 }
-            
+
                 elevador.embarcar(animal);
-            
+
                 // Atualiza a temperatura do ar condicionado
                 ajustarTemperaturaArCondicionado(animal.getTemperaturaIdeal());
-            
+
                 // Redefine o tempo de espera dos animais
                 animal.resetTempoEspera();
             } else {
@@ -65,12 +82,27 @@ public class Ascensorista {
         }
     }
 
+    // Métodos privados
+
+    /**
+     * Verifica se um animal pode entrar no elevador com base em critérios como
+     * capacidade do elevador, temperatura e outros fatores.
+     *
+     * @param animal Animal a ser verificado.
+     * @return True se o animal pode entrar no elevador, false caso contrário.
+     */
     private boolean podeEntrarNoElevador(Animal animal) {
         return (!elevador.isCheioDeAgua() || animal.podeSerTransportadoNoAgua())
             && elevador.getAndar() + elevador.andar <= Arca.QUANTIDADE_DE_ANDARES_NA_ARCA - 1
             && Math.abs(elevador.getTemperaturaDoArCondicionado() - animal.getTemperaturaIdeal()) <= 15;
     }
 
+    /**
+     * Ajusta a temperatura do ar condicionado do elevador para se aproximar da
+     * temperatura ideal do animal.
+     *
+     * @param temperaturaIdeal Temperatura ideal do animal.
+     */
     private void ajustarTemperaturaArCondicionado(int temperaturaIdeal) {
         int temperaturaAtual = elevador.getTemperaturaDoArCondicionado();
         int diferenca = Math.abs(temperaturaAtual - temperaturaIdeal);
@@ -84,9 +116,9 @@ public class Ascensorista {
                 while (temperaturaAtual > temperaturaIdeal && temperaturaAtual > 0) {
                     temperaturaAtual--;
                 }
-            }
 
-            elevador.setTemperaturaDoArCondicionado(temperaturaAtual);
+                elevador.setTemperaturaDoArCondicionado(temperaturaAtual);
+            }
         }
     }
 }
