@@ -38,6 +38,10 @@ public class MamiferoVoador extends Mamifero {
         }
     }
 
+    private String getNome() {
+        return null;
+    }
+
     /**
      * Retorna uma representação em forma de string do objeto MamiferoVoador.
      *
