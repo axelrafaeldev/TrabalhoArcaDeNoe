@@ -15,8 +15,8 @@ import java.util.Objects;
  * <br><br>
  * <strong>Não devem ser criados métodos adicionais nessa classe.</strong>
  * 
- * @author Jean Cheiran
- * @version 1.1
+ * @author Ana
+ * @version 1.2
  */
 public class Animal {
     private static final int PACIENCIA_MAXIMA = 0;
