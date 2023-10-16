@@ -63,10 +63,6 @@ public class Animal {
         return temperaturaIdeal;
     }
 
-    public int getTempoDeEspera() {
-        return tempoDeEspera;
-    }
-
     public void resetTempoEspera() {
         tempoDeEspera = 0;
     }
