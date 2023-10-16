@@ -37,6 +37,10 @@ public class ReptilAquatico extends Reptil {
         }
     }
 
+    private String getNome() {
+        return null;
+    }
+
     /**
      * Retorna uma representação em forma de string do objeto ReptilAquatico.
      *
