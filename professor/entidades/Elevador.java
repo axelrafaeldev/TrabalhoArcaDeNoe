@@ -21,7 +21,7 @@ public class Elevador {
     public final int LIMITE_DE_PESO = 2500; //em quilos
     
     private HashSet<Animal> animais;
-    private int andar; //0 é o térreo
+    public int andar; //0 é o térreo
     private int temperaturaDoArCondicionado; //em graus Celsius
     private boolean cheioDeAgua;
     

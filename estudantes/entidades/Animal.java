@@ -1,5 +1,6 @@
 package estudantes.entidades;
 
+import java.util.Objects;
 
 /**
  * Classe que define um animal da arca.
@@ -19,68 +20,97 @@ package estudantes.entidades;
  * @version 1.1
  */
 public class Animal {
-    
-    /**
-     * Limite da paciência de um animal esperando na fila antes de ir embora.
-     */
-    public final int PACIENCIA_MAXIMA = 25; //em segundos (ciclos de espera)
-    
+    private static final int PACIENCIA_MAXIMA = 0;
     private int id;
     private String nome;
     private String especie;
-    private int peso; //em quilos
-    private int andarDesejado; //0 é o térreo
+    private int andarDesejado;
+    private int peso;
     private int tempoDeEspera;
-    private int temperaturaIdeal; //em graus Celsius
-    
-    /**
-     * Construtor do animal.
-     * Todos os atributos são passados por parâmetro, exceto o tempo de espera
-     * que sempre começa em 0.
-     * @param id
-     * @param nome
-     * @param especie
-     * @param andarDesejado
-     * @param peso
-     * @param temperaturaIdeal 
-     */
-    public Animal(int id, String nome, String especie, int andarDesejado, 
-            int peso, int temperaturaIdeal){
-        /* TODO: codificar */
+    private int temperaturaIdeal;
+
+    // Construtor
+    public Animal(int id, String nome, String especie, int andarDesejado, int peso, int temperaturaIdeal) {
+        this.id = id;
+        this.nome = nome;
+        this.especie = especie;
+        this.andarDesejado = andarDesejado;
+        this.peso = peso;
+        this.tempoDeEspera = 0;
+        this.temperaturaIdeal = temperaturaIdeal;
     }
-    
-    /**
-     * Retorna o número de identificaçao do animal.
-     * O valor é gerado aleatoriamente e está entre 0 e 999999.
-     * @return número da identificação do animal
-     */
-    public int getId(){
+
+    public int getId() {
         return id;
     }
-    
-    /**
-     * Retorna o peso do animal.
-     * O peso é gerado aleatoriamente e está entre 1 e 1.000 quilos.
-     * @return peso do animal em quilos
-     */
-    public int getPeso(){
+
+    public int getPeso() {
         return peso;
     }
+
+    public void aumentaEspera() {
+        if (tempoDeEspera >= PACIENCIA_MAXIMA) {
+            throw new RuntimeException("Animal esperou demais na fila e desistiu.");
+        }
+        tempoDeEspera++;
+    }
+
+    public int getAndarDesejado() {
+        return andarDesejado;
+    }
+
+    public int getTemperaturaIdeal() {
+        return temperaturaIdeal;
+    }
+
+    public int getTempoDeEspera() {
+        return tempoDeEspera;
+    }
+
+    public void resetTempoEspera() {
+        tempoDeEspera = 0;
+    }
+
+    public boolean podeSerTransportadoNoAgua() {
+        if (this instanceof ReptilAquatico || this instanceof Peixe || this instanceof MamiferoAquatico || this instanceof Anfibio) {
+            return true;
+        }
     
-    /**
-     * Aumenta o tempo de espera um animal na fila quando passa um ciclo.
-     * Esse é o tempo de espera na fila de um andar para embarcar no elevador.
-     * Um ciclo ocorre sempre que o método de simular vida na arca é invocado.
-     * Esse método não deve ser chamado fora da classe Arca.
-     * <br><br>
-     * A implementação desse método deve comparar a paciência do animal com
-     * o tempo de espera depois de incrementado. Se ela for menor, uma exceção
-     * deve ser lançada.
-     * <br><br>
-     * @throws RuntimeException se o animal está esperando a mais tempo que a paciência
-     * @see professor.entidades.Arca#simularVida
-     */
-    public void aumentaEspera(){
-        
+        // Caso contrário, o animal não pode ser transportado na água.
+        return false;
+    }
+     @Override
+    public String toString() {
+        return "Animal{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", especie='" + especie + '\'' +
+                ", andarDesejado=" + andarDesejado +
+                ", peso=" + peso +
+                ", tempoDeEspera=" + tempoDeEspera +
+                ", temperaturaIdeal=" + temperaturaIdeal +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Animal animal = (Animal) o;
+        return id == animal.id &&
+                andarDesejado == animal.andarDesejado &&
+                peso == animal.peso &&
+                tempoDeEspera == animal.tempoDeEspera &&
+                temperaturaIdeal == animal.temperaturaIdeal &&
+                Objects.equals(nome, animal.nome) &&
+                Objects.equals(especie, animal.especie);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, especie, andarDesejado, peso, tempoDeEspera, temperaturaIdeal);
+    }
+    public int getTempoEspera() {
+        return 0;
     }
 }

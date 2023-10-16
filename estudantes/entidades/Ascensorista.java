@@ -2,8 +2,9 @@ package estudantes.entidades;
 
 
 import professor.entidades.Andar;
+import professor.entidades.Arca;
 import professor.entidades.Elevador;
-
+import java.util.List;
 
 /**
  * Classe que traz a lógica do algoritmo de uso do elevador.
@@ -13,42 +14,84 @@ import professor.entidades.Elevador;
  * <strong>atributos e métodos devem ser todos privados</strong>. O único
  * método público deve ser "agir".
  * 
- * @author Jean Cheiran
- * @version 1.1
+ * @author Ana
+ * @version 1.2
  */
+
+
 public class Ascensorista {
-    
-    /**
-     * Construtor padrão de Ascensorista.
-     * Esse construtor sem parâmetros que será usado pela Arca. Embora a
-     * assinatura do construtor não deva ser mudada, o código interno pode
-     * ser alterado conforme a necessidade.
-     */
-    public Ascensorista(){
-        /* TODO: codificar */
+    private Elevador elevador;
+    private Andar andarAtual;
+    private List<Andar> andares;
+    private int tempoEsperaMaximo;
+    private int pesoMaximo;
+
+    public Ascensorista(Elevador elevador, List<Andar> andares, int tempoEsperaMaximo, int pesoMaximo) {
+        this.elevador = elevador;
+        this.andares = andares;
+        this.tempoEsperaMaximo = tempoEsperaMaximo;
+        this.pesoMaximo = pesoMaximo;
     }
-    
-    /**
-     * Executa a lógica de controle do elevador e dos animais.
-     * Esse método é o único método de controle invocado durante a simulação 
-     * de vida da arca.
-     * <br><br>
-     * Aqui podem ser feitas todas as verificações sobre os animais do elevador
-     * e da fila de animais que estão esperando no andar. A partir desses
-     * estados, você pode movimentar animais para dentro e para fora do
-     * elevador usando os métodos "desembarcar" e "embarcar" por exemplo.
-     * O estado do elevador também é importante para acionar os comandos do 
-     * elevador como "drenar", "encher", "subir" e "descer".
-     * <br><br>
-     * O método de subir ou descer só deve ser acionado uma vez durante a 
-     * invocação desse método. Por exemplo, se o método subir foi invocado em
-     * algum momento desse método, ele não pode ser invocado de novo e nem o
-     * método de descer pode ser invocado.
-     * @param elevador o elevador controlado pelo ascensorista
-     * @param andar o andar no qual o elevador está parado
-     */
-    public void agir(Elevador elevador, Andar andar){
-        /* TODO: codificar */
+
+    public void agir() {
+        andarAtual = andares.get(elevador.getAndar());
+
+        // Verifica animais na fila e os transporta
+        while (andarAtual.consultarTamanhoDaFila() > 0) {
+            Animal animal = andarAtual.chamarProximoDaFila();
+
+            if (podeEntrarNoElevador(animal)) {
+                if (elevador.isCheioDeAgua() && !animal.podeSerTransportadoNoAgua()) {
+                    elevador.drenar(); // Ação apropriada para tratar o animal que precisa de água
+                }
+            
+                elevador.embarcar(animal);
+            
+                // Atualiza a temperatura do ar condicionado
+                ajustarTemperaturaArCondicionado(animal.getTemperaturaIdeal());
+            
+                // Redefine o tempo de espera dos animais
+                animal.resetTempoEspera();
+            } else {
+                if (animal.getTempoEspera() >= tempoEsperaMaximo) {
+                    // Animal espera demais, remove da fila
+                    andarAtual.tirarDaFila(animal);
+                } 
+                else {
+                    // Incrementa o tempo de espera do animal
+                    animal.aumentaEspera();
+                }
+            }
+            
+        }
     }
-    
+
+    private boolean podeEntrarNoElevador(Animal animal) {
+        return false;
+    }
+
+    private boolean podeEntrarNoElevador(Animal animal, Elevador elevador, Andar andar) {
+        return (!elevador.isCheioDeAgua() || animal.podeSerTransportadoNoAgua())
+            && elevador.getAndar() + elevador.andar <= Arca.QUANTIDADE_DE_ANDARES_NA_ARCA - 1
+            && Math.abs(elevador.getTemperaturaDoArCondicionado() - animal.getTemperaturaIdeal()) <= 15;
+    }
+
+    private void ajustarTemperaturaArCondicionado(int temperaturaIdeal) {
+        int temperaturaAtual = elevador.getTemperaturaDoArCondicionado();
+        int diferenca = Math.abs(temperaturaAtual - temperaturaIdeal);
+
+        if (diferenca > 15) {
+            if (temperaturaAtual < temperaturaIdeal) {
+                while (temperaturaAtual < temperaturaIdeal && temperaturaAtual < 40) {
+                    temperaturaAtual++;
+                }
+            } else {
+                while (temperaturaAtual > temperaturaIdeal && temperaturaAtual > 0) {
+                    temperaturaAtual--;
+                }
+            }
+
+            elevador.setTemperaturaDoArCondicionado(temperaturaAtual);
+        }
+    }
 }
