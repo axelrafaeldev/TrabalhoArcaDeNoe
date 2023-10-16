@@ -1,8 +1,23 @@
 package estudantes.entidades;
 
-import java.util.Objects;
 
-
+/**
+ * Classe que define um animal da arca.
+ * <br><br>
+ * Essa classe pode ser estendida. Adicionalmente, ela deve:
+ * <br><br>
+ * 1) ter um construtor completo,<br>
+ * 2) implementar métodos de acesso (getters), sendo que métodos de modificação
+ * (setters) NÃO devem ser implementados,<br>
+ * 3) sobre-escrever os métodos toString, equals e hashCode,<br>
+ * 4) deve implementar o método <i>aumentaEspera</i> conforme indicado na
+ * documentação.
+ * <br><br>
+ * <strong>Não devem ser criados métodos adicionais nessa classe.</strong>
+ * 
+ * @author Jean Cheiran
+ * @version 1.1
+ */
 public class Animal {
     
     /**
@@ -22,101 +37,38 @@ public class Animal {
      * Construtor do animal.
      * Todos os atributos são passados por parâmetro, exceto o tempo de espera
      * que sempre começa em 0.
-     * 
-     * @param id              O número de identificação do animal.
-     * @param nome            O nome do animal.
-     * @param especie         A espécie do animal.
-     * @param andarDesejado   O andar para o qual o animal deseja ir (0 é o térreo).
-     * @param peso            O peso do animal em quilos.
-     * @param temperaturaIdeal A temperatura ideal do animal em graus Celsius.
+     * @param id
+     * @param nome
+     * @param especie
+     * @param andarDesejado
+     * @param peso
+     * @param temperaturaIdeal 
      */
     public Animal(int id, String nome, String especie, int andarDesejado, 
             int peso, int temperaturaIdeal){
-        this.id = id;
-        this.nome = nome;
-        this.especie = especie;
-        this.andarDesejado = andarDesejado;
-        this.peso = peso;
-        this.temperaturaIdeal = temperaturaIdeal;
-        this.tempoDeEspera = 0;
+        /* TODO: codificar */
     }
-
+    
     /**
-     * Retorna o número de identificação do animal.
-     * 
-     * @return O número de identificação do animal.
+     * Retorna o número de identificaçao do animal.
+     * O valor é gerado aleatoriamente e está entre 0 e 999999.
+     * @return número da identificação do animal
      */
     public int getId(){
         return id;
     }
-
-    /**
-     * Retorna o nome do animal.
-     * 
-     * @return O nome do animal.
-     */
-    public String getNome(){
-        return nome;
-    }
-
-    /**
-     * Retorna a espécie do animal.
-     * 
-     * @return A espécie do animal.
-     */
-    public String getEspecie(){
-        return especie;
-    }
-
-    /**
-     * Retorna o andar que o animal deseja ir.
-     * 
-     * @return O andar desejado pelo animal.
-     */ 
-    public int getAndarDesejado(){
-        return andarDesejado;
-    }
-
+    
     /**
      * Retorna o peso do animal.
-     * 
-     * @return O peso do animal em quilos.
+     * O peso é gerado aleatoriamente e está entre 1 e 1.000 quilos.
+     * @return peso do animal em quilos
      */
     public int getPeso(){
         return peso;
     }
-
+    
     /**
-     * Retorna a temperatura ideal do animal.
-     * 
-     * @return A temperatura ideal do animal em graus Celsius.
-     */
-    public int getTemperaturaIdeal(){
-        return temperaturaIdeal;
-    }
-
-    /**
-     * Retorna o tempo de espera do animal.
-     * 
-     * @return O tempo de espera do animal em segundos (ciclos de espera).
-     */
-    public int getTempoDeEspera(){
-        return tempoDeEspera;
-    }
-
-    /**
-     * Retorna uma representação em String do animal.
-     * A representação é composta por todos os atributos do animal, separados
-     * por vírgula e espaço, e entre colchetes.
-     * 
-     * @return Uma representação em String do animal.
-     */
-    public String toString(){
-        return "["+id+", "+nome+", "+especie+", "+andarDesejado+", "+peso+", "+temperaturaIdeal+", "+tempoDeEspera+"]";
-    }
-
-    /**
-     * Aumenta o tempo de espera de um animal na fila quando passa um ciclo.
+     * Aumenta o tempo de espera um animal na fila quando passa um ciclo.
      * Esse é o tempo de espera na fila de um andar para embarcar no elevador.
      * Um ciclo ocorre sempre que o método de simular vida na arca é invocado.
      * Esse método não deve ser chamado fora da classe Arca.
@@ -124,43 +76,11 @@ public class Animal {
      * A implementação desse método deve comparar a paciência do animal com
      * o tempo de espera depois de incrementado. Se ela for menor, uma exceção
      * deve ser lançada.
-     * 
-     * @throws RuntimeException Se o animal está esperando a mais tempo que a paciência.
+     * <br><br>
+     * @throws RuntimeException se o animal está esperando a mais tempo que a paciência
      * @see professor.entidades.Arca#simularVida
      */
     public void aumentaEspera(){
-        tempoDeEspera++;
-        if(tempoDeEspera > PACIENCIA_MAXIMA){
-            throw new RuntimeException("Animal esperando a mais tempo que a paciência");
-        }
-    }
-
-    /**
-     * Sobrescreve o método equals para comparar dois objetos Animal.
-     * Dois animais são considerados iguais se tiverem o mesmo ID.
-     * 
-     * @param outro O objeto a ser comparado com o objeto atual.
-     * @return true se os objetos são iguais, false caso contrário.
-     */
-    @Override
-    public boolean equals(Object outro) {
-        if (this == outro) {
-            return true;
-        }
-        if (outro == null || getClass() != outro.getClass()) {
-            return false;
-        }
-        Animal outroAnimal = (Animal) outro;
-        return id == outroAnimal.id;
-    }
-
-    /**
-     * Sobrescreve o método hashCode para gerar um código de hash com base no ID.
-     * 
-     * @return O código de hash gerado.
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+        
     }
 }
