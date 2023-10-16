@@ -17,7 +17,6 @@ import java.util.List;
  * @version 1.2
  */
 
-
 public class Ascensorista {
     private Elevador elevador;
     private Andar andarAtual;
