@@ -3,7 +3,7 @@ package estudantes.entidades;
 /**
  * Representa uma ave que pode voar, derivada da classe Ave.
  */
-public class AveQueVoa extends Ave {
+public class AveVoadora extends Ave {
 
     /**
      * Construtor para criar uma instância de AveQueVoa.
@@ -16,7 +16,7 @@ public class AveQueVoa extends Ave {
      * @param temperaturaIdeal A temperatura ideal da ave em graus Celsius.
      * @param corDasPenas      A cor das penas da ave.
      */
-    public AveQueVoa(int id, String nome, String especie, int andarDesejado,
+    public AveVoadora(int id, String nome, String especie, int andarDesejado,
                      int peso, int temperaturaIdeal, String corDasPenas) {
         super(id, nome, especie, andarDesejado, peso, temperaturaIdeal, corDasPenas);
     }
