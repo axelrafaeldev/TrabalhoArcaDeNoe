@@ -39,12 +39,6 @@ public class Ascensorista {
     }
 
     /**
-     * Construtor vazio da classe Ascensorista.
-     */
-    public Ascensorista() {
-    }
-
-    /**
      * Método público responsável por coordenar o uso do elevador.
      *
      * @param elevador2 Elevador a ser gerenciado.
@@ -66,15 +60,11 @@ public class Ascensorista {
 
                 // Atualiza a temperatura do ar condicionado
                 ajustarTemperaturaArCondicionado(animal.getTemperaturaIdeal());
-
-                // Redefine o tempo de espera dos animais
-                animal.resetTempoEspera();
             } else {
                 if (animal.getTempoEspera() >= tempoEsperaMaximo) {
                     // Animal espera demais, remove da fila
                     andarAtual.tirarDaFila(animal);
-                } 
-                else {
+                } else {
                     // Incrementa o tempo de espera do animal
                     animal.aumentaEspera();
                 }
