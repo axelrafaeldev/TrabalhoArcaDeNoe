@@ -10,7 +10,7 @@ import java.util.HashSet;
  * <strong>Não mexa aqui!!!</strong>
  * 
  * @author Jean Cheiran
- * @version 1.0
+ * @version 1.1
  */
 public class Elevador {
     
@@ -27,11 +27,13 @@ public class Elevador {
     
     /**
      * Construtor padrão do elevador.
-     * Ele sempre começa vazio, sem água dentro e no andar 0 (térreo).
+     * Ele sempre começa vazio, sem água dentro, com ar-condicionado em
+     * 20 graus e no andar 0 (térreo).
      */
     public Elevador(){
         animais = new HashSet<Animal>();
         andar = 0;
+        temperaturaDoArCondicionado = 20;
         cheioDeAgua = false;
     }
 
