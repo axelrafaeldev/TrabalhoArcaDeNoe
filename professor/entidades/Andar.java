@@ -11,7 +11,7 @@ import java.util.LinkedList;
  * <strong>Não mexa aqui!!!</strong>
  * 
  * @author Jean Cheiran
- * @version 1.0
+ * @version 1.1
  */
 public class Andar {
     private int andar; //começa no 0
