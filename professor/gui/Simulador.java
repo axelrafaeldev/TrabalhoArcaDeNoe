@@ -10,7 +10,7 @@ import java.awt.Color;
  * <strong>Não mexa aqui!!!</strong>
  * 
  * @author Jean Cheiran
- * @version 1.0
+ * @version 1.1
  */
 public class Simulador extends javax.swing.JFrame {
 
