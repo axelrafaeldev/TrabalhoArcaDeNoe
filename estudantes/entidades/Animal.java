@@ -18,6 +18,7 @@ import java.util.Objects;
  * @author Ana
  * @version 1.2
  */
+
 public class Animal {
     private static final int PACIENCIA_MAXIMA = 0;
     private int id;
