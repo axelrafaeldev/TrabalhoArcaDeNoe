@@ -1,6 +1,5 @@
 package estudantes.entidades;
 
-
 import professor.entidades.Andar;
 import professor.entidades.Arca;
 import professor.entidades.Elevador;
