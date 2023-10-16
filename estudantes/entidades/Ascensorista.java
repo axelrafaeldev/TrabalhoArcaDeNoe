@@ -16,7 +16,6 @@ import java.util.List;
  * @author Ana
  * @version 1.2
  */
-
 public class Ascensorista {
     private Elevador elevador;
     private Andar andarAtual;
@@ -31,7 +30,10 @@ public class Ascensorista {
         this.pesoMaximo = pesoMaximo;
     }
 
-    public void agir() {
+    public Ascensorista() {
+    }
+
+    public void agir(Elevador elevador2, Andar andar) {
         andarAtual = andares.get(elevador.getAndar());
 
         // Verifica animais na fila e os transporta
@@ -60,15 +62,10 @@ public class Ascensorista {
                     animal.aumentaEspera();
                 }
             }
-            
         }
     }
 
     private boolean podeEntrarNoElevador(Animal animal) {
-        return false;
-    }
-
-    private boolean podeEntrarNoElevador(Animal animal, Elevador elevador, Andar andar) {
         return (!elevador.isCheioDeAgua() || animal.podeSerTransportadoNoAgua())
             && elevador.getAndar() + elevador.andar <= Arca.QUANTIDADE_DE_ANDARES_NA_ARCA - 1
             && Math.abs(elevador.getTemperaturaDoArCondicionado() - animal.getTemperaturaIdeal()) <= 15;
