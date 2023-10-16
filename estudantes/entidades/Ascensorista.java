@@ -37,7 +37,9 @@ public class Ascensorista {
         this.tempoEsperaMaximo = tempoEsperaMaximo;
         this.pesoMaximo = pesoMaximo;
     }
-
+public Ascensorista(){
+    
+}
     /**
      * Método público responsável por coordenar o uso do elevador.
      *
