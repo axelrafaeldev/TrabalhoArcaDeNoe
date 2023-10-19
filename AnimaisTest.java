@@ -1,4 +1,4 @@
-package teste;
+
 import estudantes.entidades.Anfibio;
 import estudantes.entidades.Animal;
 import estudantes.entidades.Ave;
@@ -60,7 +60,7 @@ public class AnimaisTest {
         assertTrue("Animais iguais", a.equals(b));
         
         MamiferoTerrestre a1 = new MamiferoTerrestre(1, "A", "B", 1, 100, 20, true);
-        MamiferoTerrestre b1 = new MamiferoTerrestre(1, "A", "B", 2, 100, 20, true);
+        MamiferoTerrestre b1 = new MamiferoTerrestre(1, "A", "B", 1, 100, 20, true);
         assertTrue("Mamíferos terrestres iguais", a1.equals(b1));
         
         Ave c = new Ave(1, "A", "B", 1, 100, 20, "C");
@@ -91,11 +91,11 @@ public class AnimaisTest {
         assertFalse("Peixes de cores diferentes", o.equals(p));
         
         Reptil q = new Reptil(1, "A", "B", 1, 100, 20);
-        Reptil r = new Reptil(1, "A", "B", 1, 100, 20);
+        Reptil r = new Reptil(1, "A", "C", 1, 100, 20);
         assertFalse("Répteis com diferentes ESPECIES", q.equals(r));
         
         ReptilAquatico s = new ReptilAquatico(1, "A", "B", 1, 100, 20);
-        ReptilAquatico t = new ReptilAquatico(1, "A", "B", 1, 100, 20);
+        ReptilAquatico t = new ReptilAquatico(1, "A", "B", 1, 99, 19);
         assertFalse("Répteis aquáticos com diferentes PESOS e TEMP ideais", s.equals(t));
     }
     

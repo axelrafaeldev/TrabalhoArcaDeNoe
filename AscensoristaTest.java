@@ -1,4 +1,3 @@
-package teste;
 
 import estudantes.entidades.Anfibio;
 import estudantes.entidades.Ave;
